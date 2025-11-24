@@ -44,23 +44,22 @@
       display: none !important;
     }
 
-    /* 中央映像 */
+    /* ★ 映像コンテナ：X 中央・Y=0 基準 */
     #ros-overlay {
       position: absolute;
-      top: 10px;
+      top: 0;  
       left: 50%;
       transform: translateX(-50%);
       z-index: 999;
-      background: rgba(0, 0, 0, 0.6);
-      border-radius: 8px;
-      padding: 8px;
-      text-align: center;
+      background: rgba(0, 0, 0, 0.0);
+      padding: 0;
     }
 
-    /* ★ 映像を1.8倍にしたサイズ */
+    /* ★ 映像：高さ 80%・横はアスペクト比で自動計算 */
     #video-player {
-      width: 360px;   /* 240 × 1.8 */
-      height: 270px;  /* 180 × 1.8 */
+      height: 80vh;           /* 画面の縦の 8 割 */
+      aspect-ratio: 4 / 3;    /* 必要なら 16 / 9 などに変更 */
+      width: auto;            /* 高さから横幅決定 */
       border-radius: 8px;
       background: black;
       display: block;
@@ -141,7 +140,7 @@
       lastTouch = now;
     }, { passive: false });
 
-    /* ★ 横持ち固定（できる限り） */
+    /* 横持ち強制（可能な範囲で） */
     screen.orientation?.lock?.("landscape").catch(() => {});
   </script>
 </body>
